@@ -1,0 +1,11 @@
+git status
+
+git add .
+
+git commit -m "primeiro commit"
+
+git push
+
+baixxar salvar no util
+
+coloca
