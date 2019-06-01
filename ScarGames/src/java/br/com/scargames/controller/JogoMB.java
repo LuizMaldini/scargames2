@@ -44,7 +44,7 @@ public class JogoMB implements Serializable{
     public String alterar(){
         JogoService service = new JogoService();
         if (service.alterar(jogo)){
-            UtilMessages.messageInfo("Jogo alterada com sucesso!");
+            UtilMessages.messageInfo("Jogo alterado com sucesso!");
             this.listar();
             return "list.xhtml?faces-redirect=true";
         }else{

@@ -39,12 +39,20 @@
                             <h:outputText value="#{jogo.classificacao}"/>
                         </p:column>
               
-                        <p:column headerText="Gênero" sortBy="#{jogo.genero}">
-                            <h:outputText value="#{jogo.genero}"/>
+                        <p:column headerText="Gênero" sortBy="#{jogo.genero.descricao}">
+                            <h:outputText value="#{jogo.genero.descricao}"/>
                         </p:column>
                         
-                        <p:column headerText="Produtora" sortBy="#{jogo.produtora}">
-                            <h:outputText value="#{jogo.produtora}"/>
+                        <p:column headerText="Produtora" sortBy="#{jogo.produtora.nome}">
+                            <h:outputText value="#{jogo.produtora.nome}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Nota" sortBy="#{jogo.nota}">
+                            <h:outputText value="#{jogo.nota}"/>
+                        </p:column>
+                        
+                        <p:column headerText="Preço" sortBy="#{jogo.preco}">
+                            <h:outputText value="#{jogo.preco}"/>
                         </p:column>
                         
                         <p:column headerText="Editar" width="70" style="text-align: center;">

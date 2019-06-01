@@ -25,7 +25,7 @@
                 
                 
                 <div class="ui-g-5">
-                    <p:selectOneMenu id="classificacao" value="#{jogoMB.jogo.classificacao}" style="width:90%"
+                    <p:selectOneMenu id="classificacao" value="#{jogoMB.jogo.classificacao}" style="width:95%"
                                      placeholder="Classificação">
                         <f:selectItem itemLabel="Maior de 18" itemValue="18" />
                         <f:selectItem itemLabel="Maior de 16" itemValue="16" />
@@ -43,11 +43,20 @@
                 </div>
                 
                 <div class="ui-g-5">
-                    <p:inputText id="nota" placeholder="Nota"
-                                 value="#{jogoMB.jogo.nota}"
-                                 style="width: 97%;"/>
+                    <p:inputNumber id="nota" placeholder="Nota" 
+                                 value="#{jogoMB.jogo.nota}"  
+                                 decimalPlaces="1"       
+                                 style="width: 100%;"/>
+                      
+                 
                 </div>
                 
+                <div class="ui-g-5">
+                    <p:inputNumber id="preco" placeholder="Preço"
+                                 value="#{jogoMB.jogo.preco}"
+                                 decimalPlaces="2"
+                                 style="width: 205%;"/>
+                </div>
                 
                 
                 <div class="ui-g-10">
