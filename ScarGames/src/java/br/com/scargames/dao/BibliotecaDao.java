@@ -21,6 +21,7 @@ public class BibliotecaDao {
         }
     }
     
+    
     public Biblioteca consultar(Integer id){
         Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -60,6 +61,20 @@ public class BibliotecaDao {
             session.getTransaction().rollback();
             e.printStackTrace();
             return false;
+        }
+    }
+    
+    public List<Biblioteca> listaPorUsuario(Integer id){
+        Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        try{
+            List<Biblioteca> lista = session.createQuery("from Biblioteca where usuario = " + id).list();
+            session.getTransaction().commit();
+            return lista;
+        }catch(Exception e){
+            session.getTransaction().rollback();
+            e.printStackTrace();
+            return null;
         }
     }
     

@@ -32,7 +32,7 @@ public class Usuario implements Serializable{
     
     @NotNull
     @Column(name="cpf")
-    @Size(min=15,max=15)
+    @Size(min=1,max=15)
     private String cpf;
     
     @NotNull

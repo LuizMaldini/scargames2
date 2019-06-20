@@ -6,14 +6,22 @@
 package br.com.scargames.controller;
 
 import br.com.scargames.domain.Biblioteca;
+import br.com.scargames.domain.Jogo;
+import br.com.scargames.domain.Usuario;
 import br.com.scargames.services.BibliotecaService;
+import br.com.scargames.services.JogoService;
 import br.com.scargames.util.UtilMessages;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import javafx.scene.chart.PieChart.Data;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -23,10 +31,18 @@ import javax.faces.bean.SessionScoped;
 @SessionScoped
 public class BibliotecaMB implements Serializable {
 
-    private Biblioteca biblioteca;
-    private List<Biblioteca> bibliotecas;
+    FacesContext context = FacesContext.getCurrentInstance();
+    private UsuarioMB usuariomb = new UsuarioMB();
     
-   
+    HttpServletRequest rq = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+    HttpSession sessao = rq.getSession();
+    
+    private int idUsuario;
+    private int idJogo;
+    
+    private Usuario usuario = new Usuario();
+    private Biblioteca biblioteca = new Biblioteca();
+    private List<Biblioteca> bibliotecas = new ArrayList<>();
     
    
     
@@ -42,6 +58,32 @@ public class BibliotecaMB implements Serializable {
     public String novo(){
         biblioteca = new Biblioteca();
         return "new.xhtml?faces-redirect=true";
+    }
+    
+    public void adicionarJogo(Jogo jogo){
+        buscarIdJogo(jogo);
+        BibliotecaService service = new BibliotecaService();
+        
+        usuario.setId(Integer.parseInt(String.valueOf(sessao.getAttribute("idUsuario"))));
+        biblioteca.setUsuario(usuario);
+        System.out.println("Id do usuario logado : " + usuario.getId());
+        jogo.setId(idJogo);
+        System.out.println("Id do jogo : " + jogo.getId());
+        biblioteca.setJogo(jogo);
+        if(service.inserir(biblioteca)){
+            context.addMessage(null, new FacesMessage("Successful",  "Adicionado a Biblioteca !!! ") );
+        }else{
+            context.addMessage(null, new FacesMessage("Error",  "Erro ao adicionar !!! ") );
+        }
+    }
+    
+    public void buscarIdJogo(Jogo jogo){
+        JogoService service = new JogoService();
+        for(Jogo j : service.listar()){
+            if(j.getTitulo().equals(jogo.getTitulo())){
+                idJogo = j.getId();
+            }
+        }
     }
     
     public String inserir(){

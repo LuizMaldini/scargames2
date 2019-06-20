@@ -21,21 +21,22 @@
                 <div class="ui-g-5">
                     <p:selectOneMenu id="usuario" value="#{bibliotecaMB.biblioteca.usuario}" style="width:90%"
                                      placeholder="Usuário" converter="entityConverter">
-                        <f:selectItems value="#{usuarioMB.usuarios}" 
+                        <f:selectItems value="#{bibliotecaMB.bibliotecas}" 
                                        var="usuario" itemLabel="#{usuario.nome}"
-                                       itemValue="#{usuario}"/>                                               
+                                       itemValue="#{usuario}"/>
+                                               
                     </p:selectOneMenu>
                 </div>
                 
                  <div class="ui-g-5">
-                     <p:selectOneMenu id="jogo" value="#{bibliotecaMB.biblioteca.jogo}" style="width:90%"
+                    <p:selectOneMenu id="jogo" value="#{bibliotecaMB.biblioteca.usuario}" style="width:90%"
                                      placeholder="Jogo" converter="entityConverter">
-                        <f:selectItems value="#{jogoMB.jogos}" 
+                        <f:selectItems value="#{bibliotecaMB.bibliotecas}" 
                                        var="jogo" itemLabel="#{jogo.titulo}"
                                        itemValue="#{jogo}"/>
                                                
                     </p:selectOneMenu>
-                </div> 
+                </div>
  
                 
                 <div class="ui-g-1"></div>
